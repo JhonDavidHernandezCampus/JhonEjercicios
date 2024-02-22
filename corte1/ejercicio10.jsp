@@ -46,13 +46,17 @@
             </div>
             <div class="d-flex justify-content-center p-5">
                 <%
-                String res;
-                int sueldo = Integer.parseInt(request.getParameter("sueldo"));
-                if(sueldo > 10000000){
-                     res = "<p class='p-2 bg-success text-center w-50  rounded '>El Empleado esta forrado en plata</p>";
-                }else{
-                     res = "<p class='p-2 bg-warning rounded text-center w-50'>El Empleado es una persona de bajos recursos (POBRE)</p>";
+                String res = "";
+                int sueldo = 0;
+                if(request.getParameter("sueldo") != null){
+                    sueldo = Integer.parseInt(request.getParameter("sueldo"));
+                    if(sueldo > 10000000){
+                         res = "<p class='p-2 bg-success text-center w-50  rounded '>El Empleado esta forrado en plata (ES RICO)</p>";
+                    }else{
+                         res = "<p class='p-2 bg-warning rounded text-center w-50'>El Empleado es una persona de bajos recursos (POBRE)</p>";
+                    }
                 }
+
 
                 out.println("<form id='form' action='ejercicio10.jsp' method='post' class='w-100 d-flex flex-column '>");
                 out.println("<label for='horasExtras'>Sueldo Actual del empleado:</label>");

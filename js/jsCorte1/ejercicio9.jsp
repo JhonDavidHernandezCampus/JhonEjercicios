@@ -16,10 +16,14 @@
 
 </head>
 <style>
-    th {
-        font-family: verdana;
-        font-size: 9pt;
-    }
+    .caja {
+     width: 0;
+     height: 0;
+     border-right: 100px solid transparent;
+     border-top: 100px solid transparent;
+     border-left: 100px solid transparent;
+     border-bottom: 200px solid #f0ad4e;
+}
 </style>
 
 <body>
@@ -28,7 +32,7 @@
             <div class="">
                 <h1 class="w-100 text-center mr-20">Ejercicios</h1>
             </div>
-                       <div class="d-flex align-items-center flex-column spacing-2">
+            <div class="d-flex align-items-center flex-column spacing-2">
                 <button type="button" onclick="window.location.href='./../../corte1/ejercicio1.jsp'" class="btn btn-info w-50 m-1">Ejercicio 1</button>
                 <button type="button" onclick="window.location.href='./../../corte1/ejercicio2.jsp'" class="btn btn-info w-50 m-1">Ejercicio 2</button>
                 <button type="button" onclick="window.location.href='./../../corte1/ejercicio3.jsp'" class="btn btn-info w-50 m-1">Ejercicio 3</button>
@@ -49,29 +53,22 @@
         </div>
         <div class="col-9 p-0">
             <div class="jumbotron text-center ">
-                <h1>Ejercicio #7</h1>
-                <p>El resultado es</p>
+                <h1>Ejercicio #9</h1>
+                <p>Resultado del volumen de la pirame es:</p>
             </div>
-            <div class="d-flex flex-column justify-content-center align-items-center p-5">
-                <%
-                    int nota1 = Integer.parseInt(request.getParameter("nota_1"));
-                    int nota2 = Integer.parseInt(request.getParameter("nota_2"));
-                    int nota3 = Integer.parseInt(request.getParameter("nota_3"));
-                    if((nota1 >= 0 && nota1 <= 50) && (nota2 >= 0 && nota2 <= 50) && (nota3 >= 0 && nota3 <= 50)){
-                    float promedio = (nota1 + nota2 + nota3)/3;
-                    out.println("<h1>El promedio de las notas "+nota1+", " + nota2+", " + nota3+"," +" es: "+ promedio +"</h1>");
-                    if(promedio > 30){
-                        out.println("<p class='p-2 bg-success rounded'>El estudiante Aprobo</p>");
-                    }else{
-                        out.println("<p class='p-2 bg-danger rounded'>El estudiante Reprobo</p>");
-                    }
-                    }else{
-                    out.println("<h1>Algunas de las notas no es valida!</h1>");
-                    }
+            
 
-                    
+            <div class="d-flex justify-content-center w-100">
+                <div class="caja"></div>
+                <div class="d-flex flex-column justify-content-center p-5">
+                <%
+                    int base = Integer.parseInt(request.getParameter("base"));
+                    int altura = Integer.parseInt(request.getParameter("altura"));
+                    double Raiz = java.lang.Math.sqrt(3);
+                    int volumen = (int) ((base * base) * (Raiz) * (altura)/4)/3;
+                    out.println("<h4>El volumen de la piramide es:  "+ volumen +"</h4>");
                 %>
-                <button class='btn btn-warning w-25' onclick="window.history.back()">Regresar</button>
+                </div>
             </div>
         </div>
     </div>

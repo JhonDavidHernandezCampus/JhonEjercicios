@@ -39,7 +39,7 @@
                 <button type="button" onclick="window.location.href='ejercicio7.html'" class="btn btn-info w-50 m-1">Ejercicio 7</button>
                 <button type="button" onclick="window.location.href='ejercicio8.html'" class="btn btn-info w-50 m-1">Ejercicio 8</button>
                 <button type="button" onclick="window.location.href='ejercicio9.html'" class="btn btn-info w-50 m-1">Ejercicio 9</button>
-                <button type="button" onclick="window.location.href='ejercicio10.html'" class="btn btn-info w-50 m-1">Ejercicio 10</button>
+                <button type="button" onclick="window.location.href='ejercicio10.jsp'" class="btn btn-info w-50 m-1">Ejercicio 10</button>
                 <button type="button" onclick="window.location.href='ejercicio11.html'" class="btn btn-info w-50 m-1">Ejercicio 11</button>
                 <button type="button" onclick="window.location.href='ejercicio12.html'" class="btn btn-info w-50 m-1">Ejercicio 12</button>
                 <button type="button" onclick="window.location.href='ejercicio13.html'" class="btn btn-info w-50 m-1">Ejercicio 13</button>

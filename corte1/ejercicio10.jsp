@@ -17,12 +17,12 @@
 <body>
     <div class="row">
         <div class="col-3 p-1 bg-secondary">
-            <div class="">
-                <h1 class="w-100 text-center mr-20">Ejercicios</h1>
+           <div class="">
+                <h1 class="w-100 text-center mr-20"><button onclick="window.location.href='./../index.html'" class="btn rounded-circle"><img src="./../img/atas.png" width="50px" height="50px" alt=""></button>Ejercicios</h1>
             </div>
             <div class="d-flex align-items-center flex-column spacing-2">
-                <button type="button" onclick="window.location.href='ejercicio1.html'" class="btn btn-info w-50 m-1">Ejercicio 1</button>
-                <button type="button" onclick="window.location.href='ejercicio2.html'" class="btn btn-info w-50 m-1">Ejercicio 2</button>
+                <button type="button" onclick="window.location.href='ejercicio1.jsp'" class="btn btn-info w-50 m-1">Ejercicio 1</button>
+                <button type="button" onclick="window.location.href='ejercicio2.jsp'" class="btn btn-info w-50 m-1">Ejercicio 2</button>
                 <button type="button" onclick="window.location.href='ejercicio3.jsp'" class="btn btn-info w-50 m-1">Ejercicio 3</button>
                 <button type="button" onclick="window.location.href='ejercicio4.html'" class="btn btn-info w-50 m-1">Ejercicio 4</button>
                 <button type="button" onclick="window.location.href='ejercicio5.html'" class="btn btn-info w-50 m-1">Ejercicio 5</button>
@@ -42,7 +42,7 @@
         <div class="col-9 p-0">
              <div class="jumbotron text-center ">
                 <h1>Ejercicio #10</h1>
-                <p>Calcula el sueldo de un empleado pidiendo su nombre, su sueldo y la cantidad de horas extras trabajadas</p>
+                <p>Calcula el estado de un empleado segun su sueldo</p>
             </div>
             <div class="d-flex justify-content-center p-5">
                 <%

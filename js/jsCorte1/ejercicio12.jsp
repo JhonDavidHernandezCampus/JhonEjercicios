@@ -53,25 +53,33 @@
         </div>
         <div class="col-9 p-0">
             <div class="jumbotron text-center ">
-                <h1>Ejercicio #4</h1>
-                <p>Resultado del area del triangulo</p>
+                <h1>Ejercicio #12</h1>
+                <p>Su color seleccionado es</p>
             </div>
             
 
             <div class="d-flex justify-content-center w-100">
-                <div class="caja"></div>
                 <div class="d-flex flex-column justify-content-center p-5">
                 <%
-                    int base = Integer.parseInt(request.getParameter("base"));
-                    int altura = Integer.parseInt(request.getParameter("altura"));
-                    float area = (base * altura)/2;
-                    out.println("<h4>Altura:"+ altura +"</h4>");
-                    out.println("<h4><h4>Base:"+ base +"</h4>");
-                    out.println("<h4>El Area del Trangulo:"+ area +" </h4>");
+                    String lenguaje[] = request.getParameterValues("lenguaje");
+                    out.println("<h4>Tu lenguaje Favorito es:</h4>");
+                    String colorName = ""; 
+                   if(color != null){
+                    for(int i = 0; i < color.length; i++){
+                        if(color[i] == "amarillo"){
+                            colorName = "bg-warning";
+                        }
+                        if(color[i] == "rojo"){
+                            colorName = "bg-danger";
+                        }
+                        if(color[i] == "azul"){
+                            colorName = "bg-primary";
+                        }
+                            out.println("<p class='p-2 text-center"+colorName+"'>"+ lenguaje[i] +"</p>");
+                    }
+                   }
                 %>
-                </div>
-                
- 
+              </div>
             </div>
         </div>
     </div>

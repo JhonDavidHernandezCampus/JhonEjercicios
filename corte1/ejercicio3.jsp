@@ -29,6 +29,7 @@
                 <h1 class="w-100 text-center mr-20"><button onclick="window.location.href='./../index.html'" class="btn rounded-circle"><img src="./../img/atas.png" width="50px" height="50px" alt=""></button>Ejercicios</h1>
             </div>
             <div class="d-flex align-items-center flex-column spacing-2">
+                <button type="button" onclick="window.location.href='formulario.html'" class="btn btn-warning w-50 m-1">Formulario</button>
                 <button type="button" onclick="window.location.href='ejercicio1.jsp'" class="btn btn-info w-50 m-1">Ejercicio 1</button>
                 <button type="button" onclick="window.location.href='ejercicio2.jsp'" class="btn btn-info w-50 m-1">Ejercicio 2</button>
                 <button type="button" onclick="window.location.href='ejercicio3.jsp'" class="btn btn-info w-50 m-1">Ejercicio 3</button>

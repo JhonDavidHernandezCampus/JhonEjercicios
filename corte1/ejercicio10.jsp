@@ -22,6 +22,7 @@
             </div>
             <div class="d-flex align-items-center flex-column spacing-2">
                 <button type="button" onclick="window.location.href='formulario.html'" class="btn btn-warning w-50 m-1">Formulario</button>
+                <button type="button" onclick="window.location.href='./../js/formulario/mostrar.jsp'" class="btn btn-success w-50 m-1">Listado</button>
                 <button type="button" onclick="window.location.href='ejercicio1.jsp'" class="btn btn-info w-50 m-1">Ejercicio 1</button>
                 <button type="button" onclick="window.location.href='ejercicio2.jsp'" class="btn btn-info w-50 m-1">Ejercicio 2</button>
                 <button type="button" onclick="window.location.href='ejercicio3.jsp'" class="btn btn-info w-50 m-1">Ejercicio 3</button>

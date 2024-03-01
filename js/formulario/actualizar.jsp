@@ -4,53 +4,12 @@
 <%@ page import="java.sql.SQLException"%>
 <%@ page import="java.sql.*" %>
 <%
-
 String ced = request.getParameter("identificacion");
 Connection conexion = null;
 Statement sentencia = null;
-	
-	int filas=0;
-	try {
-
-		Class.forName("org.postgresql.Driver");
-        String password = "12345";
-        String nameDataBase = "formulario";
-        String localhost = "localhost";
-        String puerto = "5432";
-        String userName = "postgres";
-
-	    conexion = DriverManager.getConnection(
-				"jdbc:postgresql://"+localhost+":"+puerto+"/"+nameDataBase+"",userName,password);
-
-		sentencia = conexion.createStatement();
-
-		String consultaSQL = "SELECT * FROM form WHERE ced = '" +ced+ "'";
-	
-		filas = sentencia.executeUpdate(consultaSQL);
-        System.out.println(filas);
-		// response.sendRedirect("mostrar.jsp");
-
-	} catch (ClassNotFoundException e) {
-		out.println("Error en la carga del driver"
-				+ e.getMessage());
-	} catch (SQLException e) {
-		out.println("Error accediendo a la base de datos"
-				+ e.getMessage());
-	} finally {
-		if (sentencia != null) {
-			try {sentencia.close();} 
-			catch (SQLException e) 
-			{out.println("Error cerrando la sentencia" +
-					e.getMessage());}
-		}
-		if (conexion != null) {
-			try {conexion.close();}
-			catch (SQLException e) 
-			{out.println("Error cerrando la conexion" +
-					e.getMessage());}
-		}
-	}
+ResultSet respuesta = null;
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,7 +34,7 @@ Statement sentencia = null;
       <div class="">
         <h1 class="w-100 text-center mr-20">
           <button onclick="window.location.href='./../../index.html'" class="btn rounded-circle">
-            <img src="./../img/atas.png" width="50px" height="50px" alt="" /></button>Ejercicios
+            <img src="./../../img/atas.png" width="50px" height="50px" alt="" /></button>Ejercicios
         </h1>
       </div>
       <div class="d-flex align-items-center flex-column spacing-2">
@@ -137,28 +96,110 @@ Statement sentencia = null;
         <h1>Ejercicio 1</h1>
         <p>En este Formulario manipulamos los datos de una base de datos</p>
       </div>
+        <h5 class="w-100 text-center">Editar el usuario con el id <% out.println(ced); %></h5>
       <div class="d-flex w-100 justify-content-center">
-        <form action="./../js/formulario/insertar.jsp" method="post">
-          <label>Nombre:</label><input type="text" name="nombre" maxlength="50" /><br />
-          <label>Identificacion:</label><input type="number" name="identificacion" maxlength="50" /><br />
-          <label>Apellidos:</label><input type="text" name="apellido" maxlength="50" /><br />
-          <label>Sexo:</label>
-          <input type="radio" name="sexo" value="hombre" />Hombre
-          <input type="radio" name="sexo" value="mujer" />Mujer<br />
-          <label>Correo:</label><input type="text" name="email" /><br />
-          <label>Poblacion:</label>
-          <select name="poblacion">
-            <option value="Bucaramanga">Bucaramanga</option>
-            <option value="Giron">Giron</option>
-            <option value="Piedecuesta">Piedecuesta</option>
-            <option value="Florida">Florida</option>
-          </select><br />
-          <label>Descripcion:</label>
-          <textarea name="descripcion" rows="3"></textarea><br />
-          Asepto terminos y condiciones:
-          <input type="checkbox" name="condiciones" required /><br />
-          <input type="submit" value="Enviar" />
-        </form>
+<%
+	try {
+
+		Class.forName("org.postgresql.Driver");
+        String password = "12345";
+        String nameDataBase = "formulario";
+        String localhost = "localhost";
+        String puerto = "5432";
+        String userName = "postgres";
+
+	    conexion = DriverManager.getConnection(
+				"jdbc:postgresql://"+localhost+":"+puerto+"/"+nameDataBase+"",userName,password);
+
+		sentencia = conexion.createStatement();
+
+		String consultaSQL = "SELECT * FROM form WHERE ced = '" +ced+ "'";
+	
+		respuesta = sentencia.executeQuery(consultaSQL);
+        System.out.println(respuesta);
+		if(respuesta.next()){
+            String nombre = respuesta.getString("Nom");
+            String apellido = respuesta.getString("Apell");
+            String sexo = respuesta.getString("Sexo");
+            String correo = respuesta.getString("Corr");
+            String poblacion = respuesta.getString("Pobla");
+            String descripcion = respuesta.getString("Descripcion");
+            String condiciones = respuesta.getString("Cond");
+
+
+        %> 
+        
+        <form action="actualizar-db.jsp" method="post" class="container w-50">
+         <div class="form-group">
+    <label for="identificacion">Identificacion:</label>
+    <input type="text" name="identificacion" readonly value="<%=ced %>" class="form-control" maxlength="50" />
+  </div>
+  <div class="form-group">
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" value="<%=nombre %>" class="form-control" maxlength="50" />
+  </div>
+  <div class="form-group">
+    <label for="apellido">Apellidos:</label>
+    <input type="text" name="apellido" value="<%=apellido%>" class="form-control" maxlength="50" />
+  </div>
+  <div class="form-group">
+    <label>Sexo:</label><br>
+    <div class="form-check form-check-inline">
+      <input type="radio" name="sexo" value="hombre" <% if(sexo.equals("hombre")) out.print("checked"); %> class="form-check-input">
+      <label class="form-check-label">Hombre</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input type="radio" name="sexo" value="mujer" <%  if(sexo.equals("mujer")) out.print("checked"); %> class="form-check-input">
+      <label class="form-check-label">Mujer</label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Correo:</label>
+    <input type="text" name="email" value="<%=correo%>" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label for="poblacion">Poblacion:</label>
+    <select name="poblacion" class="form-control">
+      <option value="Bucaramanga">Bucaramanga</option>
+      <option value="Giron">Giron</option>
+      <option value="Piedecuesta">Piedecuesta</option>
+      <option value="Florida">Florida</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="descripcion">Descripcion:</label>
+    <textarea name="descripcion" rows="3" class="form-control"><%=descripcion %></textarea>
+  </div>
+  <div class="form-check">
+    <input type="checkbox" name="condiciones" required class="form-check-input">
+    <label class="form-check-label">Acepto terminos y condiciones</label>
+  </div>
+  <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+</form>
+        <%
+        }
+
+	} catch (ClassNotFoundException e) {
+		out.println("Error en la carga del driver"
+				+ e.getMessage());
+	} catch (SQLException e) {
+		out.println("Error accediendo a la base de datos"
+				+ e.getMessage());
+	} finally {
+		if (sentencia != null) {
+			try {sentencia.close();} 
+			catch (SQLException e) 
+			{out.println("Error cerrando la sentencia" +
+					e.getMessage());}
+		}
+		if (conexion != null) {
+			try {conexion.close();}
+			catch (SQLException e) 
+			{out.println("Error cerrando la conexion" +
+					e.getMessage());}
+		}
+	}
+%>
       </div>
     </div>
   </div>

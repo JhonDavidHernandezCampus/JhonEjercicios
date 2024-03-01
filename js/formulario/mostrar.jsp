@@ -32,7 +32,7 @@
         <div class="">
           <h1 class="w-100 text-center mr-20">
             <button
-              onclick="window.location.href='./../index.html'"
+              onclick="window.location.href='./../../index.html'"
               class="btn rounded-circle"
             >
               <img
